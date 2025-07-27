@@ -6,6 +6,50 @@
     <title>Vendor Dashboard - VendorConnect</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --sidebar-bg: #2c3e50;
+            --sidebar-text: #bdc3c7;
+            --sidebar-text-hover: #ecf0f1;
+            --sidebar-active-bg: #34495e;
+            --main-content-bg: #f5f7fa;
+            --card-bg: white;
+            --text-color: #333;
+            --text-color-light: #666;
+            --heading-color: #2c3e50;
+            --primary-color: #667eea;
+            --secondary-color: #95a5a6;
+            --danger-color: #e74c3c;
+            --border-color: #e1e5e9;
+            --shadow-color: rgba(0,0,0,0.1);
+            --header-search-bg: #f0f2f5;
+            --alert-info-bg: #d1ecf1;
+            --alert-info-text: #0c5460;
+            --alert-info-border: #bee5eb;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a202c;
+            --sidebar-bg: #1a202c;
+            --sidebar-text: #a0aec0;
+            --sidebar-text-hover: #e2e8f0;
+            --sidebar-active-bg: #2d3748;
+            --main-content-bg: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --text-color-light: #a0aec0;
+            --heading-color: #e2e8f0;
+            --primary-color: #7f9cf5;
+            --secondary-color: #718096;
+            --danger-color: #f56565;
+            --border-color: #4a5568;
+            --shadow-color: rgba(0,0,0,0.4);
+            --header-search-bg: #2d3748;
+            --alert-info-bg: #2c3a58;
+            --alert-info-text: #a3b3d3;
+            --alert-info-border: #3a4b7a;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +58,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
-            color: #333;
+            background: var(--bg-color);
+            color: var(--text-color);
         }
 
         .dashboard {
@@ -26,8 +70,8 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background: #2c3e50;
-            color: white;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
             padding: 20px 0;
             position: fixed;
             height: 100vh;
@@ -36,16 +80,16 @@
 
         .sidebar-header {
             padding: 0 20px 20px;
-            border-bottom: 1px solid #34495e;
+            border-bottom: 1px solid var(--sidebar-active-bg);
         }
 
         .sidebar-header h3 {
-            color: #ecf0f1;
+            color: var(--sidebar-text-hover);
             font-size: 1.2rem;
         }
 
         .sidebar-header p {
-            color: #bdc3c7;
+            color: var(--sidebar-text);
             font-size: 0.9rem;
             margin-top: 5px;
         }
@@ -63,14 +107,14 @@
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            color: #bdc3c7;
+            color: var(--sidebar-text);
             text-decoration: none;
             transition: all 0.3s;
         }
 
         .nav-link:hover, .nav-link.active {
-            background: #34495e;
-            color: #ecf0f1;
+            background: var(--sidebar-active-bg);
+            color: var(--sidebar-text-hover);
         }
 
         .nav-link i {
@@ -86,10 +130,10 @@
         }
 
         .header {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
@@ -97,8 +141,37 @@
         }
 
         .header h1 {
-            color: #2c3e50;
+            color: var(--heading-color);
             font-size: 1.8rem;
+            margin-right: 20px;
+        }
+
+        .header-search {
+            display: flex;
+            align-items: center;
+            background: var(--header-search-bg);
+            border-radius: 20px;
+            padding: 5px 15px;
+            width: 300px;
+        }
+
+        .header-search input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+
+        .menu-toggle-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--heading-color);
+            cursor: pointer;
+            margin-right: 15px;
         }
 
         .user-info {
@@ -107,8 +180,27 @@
             gap: 10px;
         }
 
+        .cart-icon-wrapper {
+            position: relative;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
         .logout-btn {
-            background: #e74c3c;
+            background: var(--danger-color);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -126,10 +218,10 @@
         }
 
         .card {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
         }
 
         .card-header {
@@ -142,12 +234,12 @@
         .card-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--heading-color);
         }
 
         .card-icon {
             font-size: 1.5rem;
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         /* Stats Cards */
@@ -159,22 +251,22 @@
         }
 
         .stat-card {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
             text-align: center;
         }
 
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 5px;
         }
 
         .stat-label {
-            color: #666;
+            color: var(--text-color-light);
             font-size: 0.9rem;
         }
 
@@ -186,11 +278,26 @@
         }
 
         .product-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
             transition: transform 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -200,16 +307,17 @@
         .product-name {
             font-weight: 600;
             margin-bottom: 5px;
+            flex-grow: 1;
         }
 
         .product-price {
-            color: #667eea;
+            color: var(--primary-color);
             font-weight: bold;
             font-size: 1.1rem;
         }
 
         .product-supplier {
-            color: #666;
+            color: var(--text-color-light);
             font-size: 0.9rem;
             margin-bottom: 10px;
         }
@@ -229,12 +337,12 @@
         }
 
         .btn-primary {
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
         }
 
         .btn-secondary {
-            background: #95a5a6;
+            background: var(--secondary-color);
             color: white;
         }
 
@@ -244,7 +352,7 @@
 
         /* Group Orders */
         .group-order-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
@@ -273,45 +381,34 @@
         }
 
         .alert-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+            background: var(--alert-info-bg);
+            color: var(--alert-info-text);
+            border: 1px solid var(--alert-info-border);
         }
 
         .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        /* Voice Search */
-        .voice-search {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .voice-input {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+            background: var(--alert-info-bg); /* Using info for consistency, can be changed */
+            color: var(--alert-info-text);
+            border: 1px solid var(--alert-info-border);
         }
 
         .voice-btn {
-            background: #667eea;
-            color: white;
+            background: none;
+            color: var(--primary-color);
             border: none;
-            padding: 10px;
+            padding: 0;
             border-radius: 50%;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .voice-btn.recording {
-            background: #e74c3c;
+            color: var(--danger-color);
             animation: pulse 1s infinite;
         }
 
@@ -323,17 +420,28 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .menu-toggle-btn {
+                display: block;
+            }
+
             .sidebar {
+                width: 280px;
                 transform: translateX(-100%);
                 transition: transform 0.3s;
+                z-index: 1000;
             }
 
             .sidebar.open {
                 transform: translateX(0);
+                box-shadow: 5px 0 15px var(--shadow-color);
             }
 
             .main-content {
                 margin-left: 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
             }
 
             .dashboard-grid {
@@ -349,12 +457,12 @@
         .loading {
             text-align: center;
             padding: 20px;
-            color: #666;
+            color: var(--text-color-light);
         }
 
         .spinner {
             border: 2px solid #f3f3f3;
-            border-top: 2px solid #667eea;
+            border-top: 2px solid var(--primary-color);
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -366,6 +474,185 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px;
+            background: var(--sidebar-active-bg);
+            border-radius: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: -5px 0 15px var(--shadow-color);
+            z-index: 1002;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            color: var(--heading-color);
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 5px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+        }
+
+        .cart-overlay.open {
+            display: block;
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1005;
+        }
+
+        .toast {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateX(100%);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.success { background-color: #28a745; }
+        .toast.error { background-color: #dc3545; }
+        .toast.info { background-color: #17a2b8; }
     </style>
 </head>
 <body>
@@ -383,48 +670,72 @@
             
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#dashboard" class="nav-link active" onclick="showSection('dashboard')">
+                    <a href="#dashboard" class="nav-link active" onclick="showSection('dashboard', event)">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#products" class="nav-link" onclick="showSection('products')">
+                    <a href="#products" class="nav-link" onclick="showSection('products', event)">
                         <i class="fas fa-shopping-cart"></i> Products
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#suppliers" class="nav-link" onclick="showSection('suppliers')">
+                    <a href="#suppliers" class="nav-link" onclick="showSection('suppliers', event)">
                         <i class="fas fa-store"></i> Suppliers
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#group-orders" class="nav-link" onclick="showSection('group-orders')">
+                    <a href="#group-orders" class="nav-link" onclick="showSection('group-orders', event)">
                         <i class="fas fa-users"></i> Group Orders
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#orders" class="nav-link" onclick="showSection('orders')">
+                    <a href="#orders" class="nav-link" onclick="showSection('orders', event)">
                         <i class="fas fa-list"></i> My Orders
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#alerts" class="nav-link" onclick="showSection('alerts')">
+                    <a href="#alerts" class="nav-link" onclick="showSection('alerts', event)">
                         <i class="fas fa-bell"></i> Price Alerts
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#ledger" class="nav-link" onclick="showSection('ledger')">
+                    <a href="#ledger" class="nav-link" onclick="showSection('ledger', event)">
                         <i class="fas fa-book"></i> Digital Ledger
                     </a>
                 </li>
             </ul>
+
+            <div class="theme-switcher">
+                <span><i class="fas fa-sun"></i></span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span><i class="fas fa-moon"></i></span>
+            </div>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
             <div class="header">
-                <h1 id="section-title">Dashboard</h1>
+                <div style="display: flex; align-items: center;">
+                    <button class="menu-toggle-btn" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="section-title">Dashboard</h1>
+                    <div class="header-search">
+                        <button class="voice-btn" id="voice-btn" onclick="startVoiceSearch()">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <input type="text" id="voice-search-input" placeholder="Search products by voice...">
+                    </div>
+                </div>
                 <div class="user-info">
+                    <a href="#" class="cart-icon-wrapper" onclick="toggleCart(event)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
                     <span>{{ vendor.location }}</span>
                     <a href="/logout" class="logout-btn">Logout</a>
                 </div>
@@ -449,17 +760,6 @@
                     <div class="stat-card">
                         <div class="stat-number" id="verified-suppliers">0</div>
                         <div class="stat-label">Verified Suppliers</div>
-                    </div>
-                </div>
-
-                <!-- Voice Search -->
-                <div class="voice-search">
-                    <h3><i class="fas fa-microphone"></i> Voice Search</h3>
-                    <div class="voice-input">
-                        <input type="text" id="voice-search-input" placeholder="Search products by voice..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                        <button class="voice-btn" id="voice-btn" onclick="startVoiceSearch()">
-                            <i class="fas fa-microphone"></i>
-                        </button>
                     </div>
                 </div>
 
@@ -600,6 +900,26 @@
         </div>
     </div>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart-btn" onclick="toggleCart(event)">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p class="cart-empty">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total" style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.2rem;">
+                <strong>Total:</strong> <span id="cart-total">₹0.00</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart(event)"></div>
+
+    <div id="toast-container"></div>
+
     <script>
         let currentSection = 'dashboard';
         let products = [];
@@ -607,9 +927,10 @@
         let groupOrders = [];
         let orders = [];
         let alerts = [];
+        let cart = [];
 
         // Navigation
-        function showSection(section) {
+        function showSection(section, event) {
             // Hide all sections
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
             
@@ -618,6 +939,12 @@
             
             // Update active nav link
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            // Close sidebar on mobile after clicking a link
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+
             event.target.classList.add('active');
             
             // Update title
@@ -668,22 +995,24 @@
         // Dashboard data
         async function loadDashboardData() {
             try {
-                const [productsRes, alertsRes] = await Promise.all([
-                    fetch('/api/products'),
+                const [statsRes, productsRes, alertsRes] = await Promise.all([
+                    fetch('/api/dashboard-stats'),
+                    fetch('/api/recommended-products'),
                     fetch('/api/price-alerts')
                 ]);
                 
-                products = await productsRes.json();
+                const stats = await statsRes.json();
+                const recommendedProducts = await productsRes.json();
                 alerts = await alertsRes.json();
                 
                 // Update stats
-                document.getElementById('total-orders').textContent = '12';
-                document.getElementById('monthly-savings').textContent = '₹2,450';
-                document.getElementById('active-group-orders').textContent = '3';
-                document.getElementById('verified-suppliers').textContent = '5';
+                document.getElementById('total-orders').textContent = stats.total_orders;
+                document.getElementById('monthly-savings').textContent = `₹${stats.monthly_savings.toLocaleString('en-IN')}`;
+                document.getElementById('active-group-orders').textContent = stats.active_group_orders;
+                document.getElementById('verified-suppliers').textContent = stats.verified_suppliers;
                 
                 // Show recent products
-                displayRecentProducts();
+                displayRecentProducts(recommendedProducts);
                 
                 // Show price alerts
                 displayPriceAlerts();
@@ -694,33 +1023,48 @@
         }
 
         // Display recent products
-        function displayRecentProducts() {
+        function displayRecentProducts(recommendedProducts) {
             const container = document.getElementById('recent-products');
-            const recentProducts = products.slice(0, 6);
-            
-            container.innerHTML = recentProducts.map(product => `
-                <div class="product-card">
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">₹${product.current_price}/${product.unit}</div>
-                    <div class="product-supplier">${product.supplier_name}</div>
-                    <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
-                        <button class="btn btn-secondary" onclick="viewDetails('${product.id}')">Details</button>
-                    </div>
-                </div>
-            `).join('');
+            if (recommendedProducts && recommendedProducts.length > 0) {
+                container.innerHTML = recommendedProducts.map(p => createProductCardHTML(p)).join('');
+            } else {
+                container.innerHTML = '<p style="padding: 20px;">No recommendations available.</p>';
+            }
         }
 
         // Display price alerts
         function displayPriceAlerts() {
             const container = document.getElementById('price-alerts');
-            
-            container.innerHTML = alerts.map(alert => `
-                <div class="alert alert-info">
-                    <strong>${alert.product}:</strong> ${alert.message}
-                    <br><small>${alert.timestamp}</small>
+            if (alerts && alerts.length > 0) {
+                container.innerHTML = alerts.map(alert => `
+                    <div class="alert alert-info">
+                        <strong>${alert.product}:</strong> ${alert.message}
+                        <br><small>${alert.timestamp}</small>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Create Product Card HTML
+        function createProductCardHTML(product, showLocation = false) {
+            const supplierInfo = showLocation 
+                ? `${product.supplier_name} (${product.supplier_location})`
+                : product.supplier_name;
+
+            return `
+                <div class="product-card">
+                    <img src="${product.image_url || 'https://placehold.co/400x250/E1E5E9/666?text=No+Image'}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-supplier">${supplierInfo}</div>
+                        <div class="product-price">₹${product.current_price}/${product.unit}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
+                            <button class="btn btn-secondary" onclick="viewDetails('${product.id}')">Details</button>
+                        </div>
+                    </div>
                 </div>
-            `).join('');
+            `;
         }
 
         // Load products
@@ -730,17 +1074,7 @@
                 products = await response.json();
                 
                 const container = document.getElementById('products-grid');
-                container.innerHTML = products.map(product => `
-                    <div class="product-card">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-price">₹${product.current_price}/${product.unit}</div>
-                        <div class="product-supplier">${product.supplier_name} (${product.supplier_location})</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
-                            <button class="btn btn-secondary" onclick="viewDetails('${product.id}')">Details</button>
-                        </div>
-                    </div>
-                `).join('');
+                container.innerHTML = products.map(p => createProductCardHTML(p, true)).join('');
                 
             } catch (error) {
                 console.error('Error loading products:', error);
@@ -873,24 +1207,24 @@
                     <div style="padding: 20px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead>
-                                <tr style="border-bottom: 1px solid #ddd;">
+                                <tr style="border-bottom: 1px solid var(--border-color);">
                                     <th style="text-align: left; padding: 10px;">Date</th>
                                     <th style="text-align: left; padding: 10px;">Description</th>
                                     <th style="text-align: right; padding: 10px;">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style="border-bottom: 1px solid #eee;">
+                                <tr style="border-bottom: 1px solid var(--border-color);">
                                     <td style="padding: 10px;">2024-01-15</td>
                                     <td style="padding: 10px;">Tomatoes, Onions - Krishna Mandi</td>
                                     <td style="text-align: right; padding: 10px;">₹1,200</td>
                                 </tr>
-                                <tr style="border-bottom: 1px solid #eee;">
+                                <tr style="border-bottom: 1px solid var(--border-color);">
                                     <td style="padding: 10px;">2024-01-12</td>
                                     <td style="padding: 10px;">Cooking Oil - Fresh Farm Supplies</td>
                                     <td style="text-align: right; padding: 10px;">₹800</td>
                                 </tr>
-                                <tr style="border-bottom: 1px solid #eee;">
+                                <tr style="border-bottom: 1px solid var(--border-color);">
                                     <td style="padding: 10px;">2024-01-10</td>
                                     <td style="padding: 10px;">Rice, Lentils - Quality Vegetables</td>
                                     <td style="text-align: right; padding: 10px;">₹1,500</td>
@@ -950,17 +1284,7 @@
             );
             
             const container = document.getElementById('products-grid');
-            container.innerHTML = filteredProducts.map(product => `
-                <div class="product-card">
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">₹${product.current_price}/${product.unit}</div>
-                    <div class="product-supplier">${product.supplier_name} (${product.supplier_location})</div>
-                    <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
-                        <button class="btn btn-secondary" onclick="viewDetails('${product.id}')">Details</button>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = filteredProducts.map(p => createProductCardHTML(p, true)).join('');
         }
 
         // Filter products by category
@@ -974,22 +1298,118 @@
             const filteredProducts = products.filter(product => product.category === category);
             
             const container = document.getElementById('products-grid');
-            container.innerHTML = filteredProducts.map(product => `
-                <div class="product-card">
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">₹${product.current_price}/${product.unit}</div>
-                    <div class="product-supplier">${product.supplier_name} (${product.supplier_location})</div>
-                    <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
-                        <button class="btn btn-secondary" onclick="viewDetails('${product.id}')">Details</button>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = filteredProducts.map(p => createProductCardHTML(p, true)).join('');
         }
 
         // Action functions
         function addToCart(productId) {
-            alert('Product added to cart!');
+            // Search in all products, not just recommended
+            const allProducts = [...products, ...((window.allProducts) || [])];
+            const productToAdd = allProducts.find(p => p.id == productId);
+            if (!productToAdd) return;
+
+            const existingItem = cart.find(item => item.id == productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...productToAdd, quantity: 1 });
+            }
+
+            updateCartDisplay();
+            showToast(`${productToAdd.name} added to cart`);
+        }
+
+        async function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty.', 'error');
+                return;
+            }
+
+            const checkoutBtn = document.querySelector('.cart-footer .btn-primary');
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; border-width: 2px; margin: 0 auto;"></div>';
+
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(cart)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('Checkout successful! Your orders have been placed.');
+                    cart = [];
+                    updateCartДисплей();
+                    // Close cart
+                    document.getElementById('cart-sidebar').classList.remove('open');
+                    document.getElementById('cart-overlay').classList.remove('open');
+                    
+                    // Navigate to orders page
+                    const ordersLink = document.querySelector('a[href="#orders"]');
+                    if (ordersLink) {
+                        ordersLink.click();
+                    }
+
+                } else {
+                    showToast(data.message || 'Checkout failed. Please try again.', 'error');
+                }
+            } catch (error) {
+                showToast('An error occurred during checkout.', 'error');
+            } finally {
+                checkoutBtn.disabled = false;
+                checkoutBtn.innerHTML = 'Proceed to Checkout';
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            const cartEmptyMsg = document.querySelector('.cart-empty');
+
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+                cartTotal.textContent = '₹0.00';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image_url || 'https://placehold.co/100x100/E1E5E9/666?text=No+Image'}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <strong>${item.name}</strong>
+                        <p>₹${item.current_price.toFixed(2)}</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.current_price * item.quantity), 0);
+            cartTotal.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        function updateQuantity(productId, quantity) {
+            const item = cart.find(i => i.id == productId);
+            if (item) {
+                item.quantity = parseInt(quantity, 10);
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id != productId);
+                }
+            }
+            updateCartDisplay();
+        }
+
+        function toggleCart(event) {
+            event.preventDefault();
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
         }
 
         function viewDetails(productId) {
@@ -1012,9 +1432,65 @@
             alert('Create group order form will be shown here.');
         }
 
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            // Show toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+        
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
+            // Theme switcher logic
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    themeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggle.checked = false;
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            }
+
+            themeToggle.addEventListener('change', () => {
+                if (themeToggle.checked) {
+                    localStorage.setItem('theme', 'dark');
+                    applyTheme('dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    applyTheme('light');
+                }
+            });
+
             loadDashboardData();
+
+            // Mobile sidebar toggle
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
         });
     </script>
 </body>

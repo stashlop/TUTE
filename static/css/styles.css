@@ -1,4 +1,85 @@
-/* Additional Styles for VendorConnect */
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+/* Header */
+.header {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.header__nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+.header__nav a {
+    font-weight: 500;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.header__nav a:hover {
+    color: #667eea;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600; /* Additional Styles for VendorConnect */
+    /* Additional Styles for VendorConnect */
 
 /* Modal Styles */
 .modal {
@@ -551,5 +632,4 @@ select:focus {
     
     .sidebar.open {
         transform: translateX(0);
-    }
-} 
+    } }}
